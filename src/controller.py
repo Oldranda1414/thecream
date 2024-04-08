@@ -1,4 +1,8 @@
-from model import TodoListModel
+"""
+this module is the controller
+"""
+
+from model.conversion_rule import TodoListModel
 from view import TodoListView
 
 class TodoListController:
