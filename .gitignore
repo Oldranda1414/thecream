@@ -34,3 +34,6 @@ env/
 
 # Ignore project dependencies
 pip-lock.txt
+
+# Ignore vscode settings
+.vscode/
