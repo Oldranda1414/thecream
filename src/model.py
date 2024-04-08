@@ -12,7 +12,7 @@ class Model:
     This class defines the model object
     """
     def __init__(self):
-        self.__rule_dict = {}
+        self.__rule_dict = {"C": lambda x: x*10}
 
     def add_conversion(self, unit: str, conversion: Callable[[float], float]):
         """
