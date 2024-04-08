@@ -9,10 +9,19 @@ class ConversionRule:
     This class rapresents a conversion rule, with unit
     """
     def __init__(self, unit: str, conversion: Callable[[float], float]):
-        self.unit = unit
-        self.conversion = conversion
+        self.__unit = unit
+        self.__conversion = conversion
 
-    def convert(self, x: float):
+    def get_unit(self) -> str:
+        """
+        getter for the private property unit
+
+        Returns:
+            str: unit
+        """
+        return self.__unit
+
+    def convert(self, x: float) -> float:
         """
         converts x to the value in chantilly cream
         based on the conversion of the class
@@ -23,4 +32,4 @@ class ConversionRule:
         Returns:
             float: the converted value
         """
-        return self.conversion(x)
+        return self.__conversion(x)
