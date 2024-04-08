@@ -6,9 +6,9 @@ from model.model import Model
 from view.view import View
 
 class Controller:
-    def __init__(self):
-        self.model = Model()
-        self.view = View
+    def __init__(self, model: Model, view: View):
+        self.model = model
+        self.view = view
 
     def run(self):
         while True:
@@ -24,7 +24,3 @@ class Controller:
                 break
             else:
                 print("Invalid choice. Please try again.")
-
-if __name__ == "__main__":
-    controller = Controller()
-    controller.run()
