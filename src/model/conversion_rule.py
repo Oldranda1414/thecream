@@ -1,5 +1,5 @@
 """
-this module contains the conversion rule concept
+This module contains the conversion rule concept
 """
 
 from typing import Callable

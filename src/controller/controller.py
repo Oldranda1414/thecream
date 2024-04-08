@@ -2,13 +2,13 @@
 this module is the controller
 """
 
-from model.conversion_rule import TodoListModel
-from view import TodoListView
+from model.model import Model
+from view.view import View
 
-class TodoListController:
+class Controller:
     def __init__(self):
-        self.model = TodoListModel()
-        self.view = TodoListView()
+        self.model = Model()
+        self.view = View
 
     def run(self):
         while True:
@@ -26,5 +26,5 @@ class TodoListController:
                 print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    controller = TodoListController()
+    controller = Controller()
     controller.run()
