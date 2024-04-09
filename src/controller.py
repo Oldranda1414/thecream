@@ -22,7 +22,7 @@ class Controller:
         """
         self.view.start(self.model.get_rules_dict().keys())
 
-    def calculate_conversion(self, unit: str, input: float):
+    def calculate_conversion(self, unit: str, value: float):
         """
         Method to calculate the conversion to chantilly cream
 
@@ -31,5 +31,5 @@ class Controller:
             value (float): The value to be converted
         """
         conversion = self.model.get_conversion(unit)
-        output: float = conversion(input)
+        output: float = conversion(value)
         self.view.post_result(output)

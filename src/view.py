@@ -56,7 +56,7 @@ class View:
     def __button_pressed(self, _):
         unit = self.__get_unit()
         value = self.__get_value()
-        pub.sendMessage("calculate_conversion", unit=unit, input=value)
+        pub.sendMessage("calculate_conversion", unit=unit, value=value)
 
     def post_result(self, value: float):
         """
@@ -65,6 +65,9 @@ class View:
         Args:
             value (float): The value to be shown
         """
+        if value.is_integer():
+            value = int(value)
+
         # Create a Text widget
         text_widget = tk.Text(self.__root, height=10, width=40)
         text_widget.pack()
