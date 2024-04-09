@@ -15,7 +15,7 @@ class View:
         self.__root.title("Cream project")
 
         # Create a text field
-        self.textfield = tk.Text(self.__root, height=1, width=40)
+        self.textfield = tk.Entry(self.__root)
         self.textfield.pack()
 
         # Create a selectable list (Listbox)
@@ -26,7 +26,7 @@ class View:
         self.button = tk.Button(self.__root, text="Convert")
         self.button.pack()
 
-        self.button.bind("<Button-1>", lambda _: pub.sendMessage("calculate_conversion"))
+        self.button.bind("<Button-1>", self.__button_pressed)
 
     def start(self, possible_conversions: List[str]):
         """
@@ -49,3 +49,26 @@ class View:
         index = self.listbox.curselection()[0]
         # Get the value of the selected item
         return self.listbox.get(index)
+
+    def __get_value(self) -> float:
+        return float(self.textfield.get())
+
+    def __button_pressed(self, _):
+        unit = self.__get_unit()
+        value = self.__get_value()
+        pub.sendMessage("calculate_conversion", unit=unit, input=value)
+
+    def post_result(self, value: float):
+        """
+        The gui will show the result to the user
+
+        Args:
+            value (float): The value to be shown
+        """
+        # Create a Text widget
+        text_widget = tk.Text(self.__root, height=10, width=40)
+        text_widget.pack()
+
+        # Insert text into the Text widget
+        msg = f"The result is equal to {value} chantilly cream"
+        text_widget.insert(tk.END, msg)

@@ -30,3 +30,6 @@ class Model:
             Dict[str, Callable[[float], float]]: the rules dictionary
         """
         return self.__rule_dict
+
+    def get_conversion(self, unit: str) -> Callable[[float], float]:
+        return self.__rule_dict.get(unit)

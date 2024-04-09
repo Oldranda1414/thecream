@@ -21,6 +21,15 @@ class Controller:
         Starts the system
         """
         self.view.start(self.model.get_rules_dict().keys())
-    
-    def calculate_conversion(self):
-        print("calculating")
+
+    def calculate_conversion(self, unit: str, input: float):
+        """
+        Method to calculate the conversion to chantilly cream
+
+        Args:
+            unit (str): The unit to convert from
+            value (float): The value to be converted
+        """
+        conversion = self.model.get_conversion(unit)
+        output: float = conversion(input)
+        self.view.post_result(output)
