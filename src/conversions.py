@@ -17,7 +17,8 @@ def get_conversions() -> Dict[str, Callable[[float], float]]:
         "A": __from_amperes,
         "K°": __from_kelvin,
         "mol": __from_moles,
-        "cd": __from_candela
+        "cd": __from_candela,
+        "$": __from_dollars
     }
 
 def __from_meters(meters: float) -> float:
@@ -40,3 +41,6 @@ def __from_moles(mol: float) -> float:
 
 def __from_candela(cand: float) -> float:
     return cand / 64
+
+def __from_dollars(dol: float) -> float:
+    return dol / 10.4
