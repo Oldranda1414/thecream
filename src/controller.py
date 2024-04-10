@@ -30,6 +30,9 @@ class Controller:
             unit (str): The unit to convert from
             value (float): The value to be converted
         """
-        conversion = self.model.get_conversion(unit)
-        output: float = conversion(value)
-        self.view.post_result(output)
+        conversion, error = self.model.get_conversion(unit)
+        if error:
+            self.view.post_error(error)
+        else:
+            output: float = conversion(value)
+            self.view.post_result(output)

@@ -59,4 +59,17 @@ class View:
 
         # Insert text into the Text widget
         msg = f"The result is equal to {value} chantilly cream"
+        self.__post_msg(msg)
+
+    def post_error(self, error: str):
+        """
+        The gui will show the error
+
+        Args:
+            error (str): the error
+        """
+        msg = f"The following error occured {error}"
+        self.__post_msg(msg)
+
+    def __post_msg(self, msg: str):
         self.response_text_widget.insert(tk.END, msg)

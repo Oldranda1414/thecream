@@ -4,6 +4,7 @@ This module contains the model class
 
 from typing import Callable
 from typing import Dict
+from typing import Tuple
 
 from conversions import get_conversions
 
@@ -22,7 +23,7 @@ class Model:
         """
         return self.__rule_dict
 
-    def get_conversion(self, unit: str) -> Callable[[float], float]:
+    def get_conversion(self, unit: str) -> Tuple[Callable[[float], float], str]:
         """
         returns a conversion given its unit
 
@@ -31,5 +32,7 @@ class Model:
 
         Returns:
             Callable[[float], float]: the conversion
+            str: an error message
         """
-        return self.__rule_dict.get(unit)
+        result = self.__rule_dict.get(unit)
+        return (result, "") if result else (lambda: None, "Unit not recognized")
