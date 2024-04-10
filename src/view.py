@@ -72,4 +72,8 @@ class View:
         self.__post_msg(msg)
 
     def __post_msg(self, msg: str):
+        self.__clean_response_text_widget()
         self.response_text_widget.insert(tk.END, msg)
+
+    def __clean_response_text_widget(self):
+        self.response_text_widget.delete('1.0', 'end')
