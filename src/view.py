@@ -22,6 +22,10 @@ class View:
         self.button = tk.Button(self.__root, text="Convert")
         self.button.pack()
 
+        # Create a response Text widget
+        self.response_text_widget = tk.Text(self.__root, height=10, width=40)
+        self.response_text_widget.pack()
+
         self.button.bind("<Button-1>", self.__button_pressed)
 
     def start(self):
@@ -52,10 +56,7 @@ class View:
         if value.is_integer():
             value = int(value)
 
-        # Create a Text widget
-        response_text_widget = tk.Text(self.__root, height=10, width=40)
-        response_text_widget.pack()
 
         # Insert text into the Text widget
         msg = f"The result is equal to {value} chantilly cream"
-        response_text_widget.insert(tk.END, msg)
+        self.response_text_widget.insert(tk.END, msg)
