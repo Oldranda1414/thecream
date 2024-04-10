@@ -20,7 +20,7 @@ class Controller:
         """
         Starts the system
         """
-        self.view.start(self.model.get_rules_dict().keys())
+        self.view.start()
 
     def calculate_conversion(self, unit: str, value: float):
         """

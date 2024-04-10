@@ -2,7 +2,7 @@
 This module is the view
 """
 
-from typing import List
+from typing import Tuple
 import tkinter as tk
 from pubsub import pub
 
@@ -18,44 +18,28 @@ class View:
         self.textfield = tk.Entry(self.__root)
         self.textfield.pack()
 
-        # Create a selectable list (Listbox)
-        self.listbox = tk.Listbox(self.__root, selectmode=tk.SINGLE)
-        self.listbox.pack()
-
         # Create a button
         self.button = tk.Button(self.__root, text="Convert")
         self.button.pack()
 
         self.button.bind("<Button-1>", self.__button_pressed)
 
-    def start(self, possible_conversions: List[str]):
+    def start(self):
         """
         starts the gui
 
         Args:
             possible_conversions (List[str]): list of possible units to convert
         """
-        self.__add_units(possible_conversions)
-        self.button.bind()
-
         self.__root.mainloop()
 
-    def __add_units(self, possible_conversions: List[str]):
-        for item in possible_conversions:
-            self.listbox.insert(tk.END, item)
-
-    def __get_unit(self) -> str:
-        # Get the index of the selected item
-        index = self.listbox.curselection()[0]
-        # Get the value of the selected item
-        return self.listbox.get(index)
-
-    def __get_value(self) -> float:
-        return float(self.textfield.get())
+    def __get_query(self) -> Tuple[float, str]:
+        textfield_contents = self.textfield.get()
+        value, unit = textfield_contents.split(" ")
+        return float(value), unit
 
     def __button_pressed(self, _):
-        unit = self.__get_unit()
-        value = self.__get_value()
+        value, unit = self.__get_query()
         pub.sendMessage("calculate_conversion", unit=unit, value=value)
 
     def post_result(self, value: float):
@@ -69,9 +53,9 @@ class View:
             value = int(value)
 
         # Create a Text widget
-        text_widget = tk.Text(self.__root, height=10, width=40)
-        text_widget.pack()
+        response_text_widget = tk.Text(self.__root, height=10, width=40)
+        response_text_widget.pack()
 
         # Insert text into the Text widget
         msg = f"The result is equal to {value} chantilly cream"
-        text_widget.insert(tk.END, msg)
+        response_text_widget.insert(tk.END, msg)
