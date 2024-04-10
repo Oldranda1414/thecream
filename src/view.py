@@ -6,6 +6,8 @@ from typing import Tuple
 import tkinter as tk
 from pubsub import pub
 
+from utils import round_to_significant_figures
+
 class View:
     """
     View class
@@ -55,6 +57,8 @@ class View:
         """
         if value.is_integer():
             value = int(value)
+        else:
+            value = round_to_significant_figures(value, 3)
 
 
         # Insert text into the Text widget
