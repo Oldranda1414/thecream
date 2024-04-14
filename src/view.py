@@ -45,8 +45,12 @@ class View:
         return float(value), unit
 
     def __button_pressed(self, _):
-        value, unit = self.__get_query()
-        pub.sendMessage("calculate_conversion", unit=unit, value=value)
+        try:
+            value, unit = self.__get_query()
+        except ValueError as _:
+            self.post_error("Input error. Insert a number and a unit of mesurement in this order, separated by a space")
+        else:
+            pub.sendMessage("calculate_conversion", unit=unit, value=value)
 
     def post_result(self, value: float):
         """
