@@ -4,7 +4,7 @@ This module extends conversions.py adding multiples and fractions
 
 from typing import Callable
 
-from conversions import get_conversions
+from extended_conversions import get_conversions
 from prefixes import get_prefixes
 
 def get_prefixed_conversion(unit: str) -> Callable[[float], float]:
