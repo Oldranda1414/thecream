@@ -72,7 +72,7 @@ class View:
         Args:
             error (str): the error
         """
-        msg = f"The following error occured {error}"
+        msg = f"The following error occured :{error}"
         self.__post_msg(msg)
 
     def __post_msg(self, msg: str):
